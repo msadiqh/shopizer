@@ -1,0 +1,21 @@
+---
+- name: Download Application from Nexus Repo
+  hosts: app_server
+  tasks:
+    - name: Download war file from Nexus 
+      get_url:
+        force: yes
+        url: "{{ ARTIFACT_URL }}"
+        dest: "/opt/tomcat/webapps/ROOT.war"
+    - name: Change ownership and permission
+      file:
+        path: /opt/tomcat/webapps/ROOT.war
+        owner: tomcat
+        group: tomcat
+        mode: '0644'
+      notify:
+        - Restart tomcat
+      
+  handlers:
+    - name: Restart tomcat
+      service: name=tomcat state=restarted
