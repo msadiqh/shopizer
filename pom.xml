@@ -585,9 +585,10 @@
 	  <plugin>
 		<groupId>org.apache.maven.plugins</groupId>
 		<artifactId>maven-surefire-plugin</artifactId>
-		<configuration>
-			<skip>${surefire.skip}</skip>
-		</configuration>
+                <version>3.0.0-M3</version>
+                <configuration>
+                <testFailureIgnore>true</testFailureIgnore>
+                </configuration>
 	  </plugin>
 			<plugin>
 				<groupId>org.jacoco</groupId>
