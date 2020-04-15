@@ -41,11 +41,9 @@ shopizer ecommerse
                 <java.version>1.8</java.version>
                 <maven.compiler.source>1.8</maven.compiler.source>
                 <maven.compiler.target>1.8</maven.compiler.target>
-				
-				<!--sonar-->
+                <!--sonar-->
                 <sonar.junit.reportPaths>target/surefire-reports,target/failsafe-reports</sonar.junit.reportPaths>
-                <sonar.sourceEncoding>UTF-8</sonar.sourceEncoding>
-				
+                <sonar.sourceEncoding>UTF-8</sonar.sourceEncoding>                                                                                                                                                                                                            		                                                                                                                                                 		
                 <!-- eclipse stuff -->
                 <m2eclipse.wtp.contextRoot>/</m2eclipse.wtp.contextRoot>
 
@@ -554,111 +552,101 @@ shopizer ecommerse
                                         <source>${maven.compiler.source}</source>
                                         <target>${maven.compiler.target}</target>
                                         <annotationProcessorPaths>
-                                                <path>
-                                                        <groupId>org.mapstruct</groupId>
-                                                        <artifactId>mapstruct-processor</artifactId>
-                                                        <version>${org.mapstruct.version}</version>
-                                                </path>
-                                                <!-- other annotation processors -->
-                                        </annotationProcessorPaths>
-                                </configuration>
-                        </plugin>
-
-                        <plugin>
-                                <groupId>com.github.spotbugs</groupId>
-                                <artifactId>spotbugs-maven-plugin</artifactId>
-                                <version>3.1.8</version>
-                        </plugin>
-						
-						<plugin>
-		                        <groupId>org.codehaus.mojo</groupId>
-		                        <artifactId>versions-maven-plugin</artifactId>
-	                    </plugin>
-						
-					    <plugin>
-		                        <groupId>org.apache.maven.plugins</groupId>
-		                        <artifactId>maven-failsafe-plugin</artifactId>
-	                    </plugin>
-						
-					    <plugin>
-		                        <groupId>org.apache.maven.plugins</groupId>
-		                        <artifactId>maven-surefire-plugin</artifactId>
-		                        <configuration>
-			                                   <skip>${surefire.skip}</skip>
-		                        </configuration>
-	                    </plugin>
-                        
-						<plugin>
-				                <groupId>org.jacoco</groupId>
-				                <artifactId>jacoco-maven-plugin</artifactId>
-				                <version>${jacoco.version}</version>
-								  <executions>
-								  <execution>
-								  <id>default-prepare-agent</id>
-						          <goals>
-							      <goal>prepare-agent</goal>
-						          </goals>
-					              </execution>
-									
-					              <execution>
-						          <id>default-prepare-agent-it</id>
-						          <goals>
-							      <goal>prepare-agent-integration</goal>
-						          </goals>
-					              </execution>
-					                
-							      <execution>
-						          <id>default-report</id>
-						          <phase>prepare-package</phase>
-						          <goals>
-							      <goal>report</goal>
-						          </goals>
-					              </execution>
-									
-					              <execution>
-						          <id>default-report-it</id>
-						          <phase>prepare-package</phase>
-						          <goals>
-							      <goal>report-integration</goal>
-						          </goals>
-					              </execution>
-				                  </executions>
-			            </plugin>
+                    <path>
+                    <groupId>org.mapstruct</groupId>
+                    <artifactId>mapstruct-processor</artifactId>
+                    <version>${org.mapstruct.version}</version>
+                    </path>
+                    <!-- other annotation processors -->
+                    </annotationProcessorPaths>
+                  </configuration>
+                </plugin>
+                <plugin>
+                  <groupId>com.github.spotbugs</groupId>
+                  <artifactId>spotbugs-maven-plugin</artifactId>
+                  <version>3.1.8</version>
+                </plugin>                                                                                                                                                           		                                                                                                        		                                                                                                                                             		
+                <plugin>
+                  <groupId>org.codehaus.mojo</groupId>
+                  <artifactId>versions-maven-plugin</artifactId>
+                </plugin>                                                                                                                                                                               	                                                                                                          	                                                                                                                             	                                                                                                                     		                                                                                                                                                                                		
+                <plugin>
+                  <groupId>org.apache.maven.plugins</groupId>
+                  <artifactId>maven-failsafe-plugin</artifactId>
+                </plugin>                                                                                                                                                                                      		                                                                                                                                     	                                                                                                                                                                    	                                                                                                                                                                                                                                        	                                                                                                                                                                                                       	
+                <plugin>
+                  <groupId>org.apache.maven.plugins</groupId>
+                  <artifactId>maven-surefire-plugin</artifactId>
+                  <configuration>
+                    <skip>${surefire.skip}</skip>
+                  </configuration>
+                </plugin>                        
+                 <plugin>
+                 <groupId>org.jacoco</groupId>
+                 <artifactId>jacoco-maven-plugin</artifactId>
+                 <version>${jacoco.version}</version>
+                 <executions>
+                       <execution>
+                       <id>default-prepare-agent</id>
+                       <goals>
+                         <goal>prepare-agent</goal>
+                       </goals>
+                   </execution>                                                                                                                                                                                                                                                                                                                                                                                                                                                                                        	                                                                                                       	                                                                                                                                                                                                             		
+                   <execution>
+                   <id>default-prepare-agent-it</id>
+                      <goals>
+                        <goal>prepare-agent-integration</goal>
+                      </goals>
+                   </execution>                                                                             
+                   <execution>
+                   <id>default-report</id>
+                     <phase>prepare-package</phase>
+                       <goals>
+                         <goal>report</goal>
+                       </goals>
+                     </execution>                                                                                                                                                                            	
+                     <execution>
+                     <id>default-report-it</id>
+                     <phase>prepare-package</phase>
+                       <goals>
+                         <goal>report-integration</goal>
+                       </goals>
+                   </execution>
+                 </executions>
+                 </plugin>
+                 </plugins>
+        </build> 
+        <profiles>
+            <profile>
+                <activation>
+                <activeByDefault>false</activeByDefault>
+                </activation>
+                <id>nexus</id>
+                <build>
+                <plugins>
+                <!-- Nexus -->
+                <plugin>
+                    <groupId>org.apache.maven.plugins</groupId>
+                    <artifactId>maven-deploy-plugin</artifactId>
+                    <configuration>
+                      <skip>true</skip>
+                    </configuration>
+                </plugin>
+                <plugin>
+                    <groupId>org.sonatype.plugins</groupId>
+                    <artifactId>nexus-staging-maven-plugin</artifactId>
+                    <extensions>true</extensions>
+                    <configuration>
+                        <!-- The Base URL of Nexus instance where we want to stage -->
+                        <nexusUrl>${NEXUS_URL}</nexusUrl>
+                        <!-- The server "id" element from settings to use authentication from -->
+                        <serverId>ocp-nexus</serverId>
+                    </configuration>
+                </plugin>
                 </plugins>
-        </build>
-		  
-		<profiles>
-			<profile>
-				<activation>
-					<activeByDefault>false</activeByDefault>
-				</activation>
-			    <id>nexus</id>
-			    <build>
-				<plugins>
-				<!-- Nexus -->
-				<plugin>
-					<groupId>org.apache.maven.plugins</groupId>
-					<artifactId>maven-deploy-plugin</artifactId>
-					<configuration>
-						<skip>true</skip>
-					</configuration>
-				</plugin>
-				<plugin>
-					<groupId>org.sonatype.plugins</groupId>
-					<artifactId>nexus-staging-maven-plugin</artifactId>
-					<extensions>true</extensions>
-					<configuration>
-						<!-- The Base URL of Nexus instance where we want to stage -->
-						<nexusUrl>${NEXUS_URL}</nexusUrl>
-						<!-- The server "id" element from settings to use authentication from -->
-						<serverId>ocp-nexus</serverId>
-					</configuration>
-				</plugin>
-				</plugins>
-			    </build>
-			</profile>
-		</profiles>
-		
+                </build>
+                </profile>
+         </profiles>             
 </project>
 
 
