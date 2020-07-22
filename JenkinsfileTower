@@ -80,7 +80,7 @@ if(FULL_BUILD) {
                     [artifactId: "${pom.artifactId}", classifier: '', file: "sm-shop/target/${file}.war", type: 'war'],
                     [artifactId: "${pom.artifactId}", classifier: '', file: "${file}.pom", type: 'pom']
                 ], 
-                credentialsId: 'nexus', 
+                credentialsId: 'jenkins-nexus-login', 
                 groupId: "${pom.groupId}", 
                 nexusUrl: NEXUS_URL, 
                 nexusVersion: 'nexus3', 
