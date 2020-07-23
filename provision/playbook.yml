@@ -13,7 +13,7 @@
         path: /opt/tomcat/webapps/ROOT.war
         owner: tomcat
         group: tomcat
-        mode: '0644'
+        mode: '0664'
       notify:
         - Restart tomcat
       
