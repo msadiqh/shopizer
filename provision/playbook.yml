@@ -5,9 +5,8 @@
   become: yes
   tasks:
     - name: Download war file from Nexus 
-      get_url:
-        force: yes
-        url: "{{ ARTIFACT_URL }}"
+      copy:
+        src: "{{ ARTIFACT_URL }}"
         dest: "/opt/tomcat/webapps/ROOT.war"
     - name: Change ownership and permission
       file:
