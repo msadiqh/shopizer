@@ -8,6 +8,12 @@
       copy:
         src: "{{ ARTIFACT_URL }}"
         dest: "/opt/tomcat/webapps/ROOT.war"
+    - name: Change ownership and permission
+      file:
+        path: /opt/tomcat/webapps/ROOT.war
+        owner: tomcat
+        group: tomcat
+        mode: '0644'
       notify:
         - Restart tomcat
       
