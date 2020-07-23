@@ -1,7 +1,7 @@
 ---
 - name: Download Application from Nexus Repo
   hosts: app_server
-  remote_user: "{{ ansible_ssh_user | default('vagrant') }}"
+  remote_user: "{{ ansible_ssh_user | default('jenkins') }}"
   become: yes
   tasks:
     - name: Download war file from Nexus 
